@@ -1,11 +1,11 @@
 require('dotenv').config();
-const express=require("express")
-const cors=require("cors")
-const bodyparser=require("body-parser")
-const { default: mongoose, connect } = require("mongoose")
+const express=require("express");
+const cors=require("cors");
+const bodyparser=require("body-parser");
+const { default: mongoose, connect } = require("mongoose");
 const app=express();
 const auth = require('./routes/auth');
-const {Content}= require('./schema')
+const {Content}= require('./schema');
 const port= process.env.PORT|| 4000;
 const ConnectionString=process.env.MONGODB_URI;
 app.use(bodyparser.urlencoded({
@@ -14,11 +14,7 @@ app.use(bodyparser.urlencoded({
 app.use(bodyparser.json())
 
 // console.log(process.env.MONGODB_URI);
-
-app.use(cors({
-    origin: '*'
-}));
-
+app.use(cors({ origin: '*' }));
 
 mongoose.connect(ConnectionString)
     .then(()=>{
@@ -32,7 +28,7 @@ mongoose.connect(ConnectionString)
 app.use('/api/auth', auth);
 
 app.get("/",(req,res)=>{
-    res.send("API IS WORKING")
+    res.send("Rey Hook API IS WORKING")
 })
 
 app.get("/jobs",async(req,res)=>{
